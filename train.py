@@ -22,6 +22,7 @@ import logging
 import os
 import sys
 from dataclasses import dataclass, field
+from statistics import mean
 from typing import Optional
 
 import datasets
@@ -622,9 +623,14 @@ def main():
         decoded_preds, decoded_labels = postprocess_text(decoded_preds, decoded_labels)
 
         result = metric.compute(predictions=decoded_preds, references=decoded_labels, use_stemmer=True)
-        result = {k: round(v * 100, 4) for k, v in result.items()}
+        
+        # mean_rougeを算出するよう修正
+        result = {key: value.mid.fmeasure * 100 for key, value in result.items()}
+        result['eval_mean_rouge'] = mean([result[k] for k in ['rouge1', 'rouge2', 'rougeLsum']])
         prediction_lens = [np.count_nonzero(pred != tokenizer.pad_token_id) for pred in preds]
         result["gen_len"] = np.mean(prediction_lens)
+        result = {k: round(v, 4) for k, v in result.items()}
+        logger.info("computing metrics")
         return result
 
     # Initialize our Trainer
@@ -640,6 +646,7 @@ def main():
 
     # Training
     if training_args.do_train:
+        logger.info("*** Train ***")
         checkpoint = None
         if training_args.resume_from_checkpoint is not None:
             checkpoint = training_args.resume_from_checkpoint

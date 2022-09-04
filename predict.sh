@@ -6,7 +6,6 @@ python -u train.py \
   --do_predict \
   --model_name_or_path output/${NAME} \
   --output_dir output/${NAME}/prediction_logs_${SPLIT} \
-  --prediction_path output/${NAME}/predictions.${SPLIT} \
   --max_source_length 512 \
   --generation_max_len 256 \
   --val_max_target_length 256 \
