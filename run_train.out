@@ -111,3 +111,4 @@ json {'train': 'data/qmsum/train.json', 'validation': 'data/qmsum/val.json'}
 09/04/2022 16:53:29 - INFO - datasets.info - Loading Dataset info from /home/ace14385kw/.cache/huggingface/datasets/json/default-27bae8f72b8d9ea7/0.0.0/a3e658c4731e59120d44081ac10bf85dc7e1388126b92338344ce9661907f253
 09/04/2022 16:53:41 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /home/ace14385kw/.cache/huggingface/datasets/json/default-27bae8f72b8d9ea7/0.0.0/a3e658c4731e59120d44081ac10bf85dc7e1388126b92338344ce9661907f253/cache-439d2449b8c345e0.arrow
 09/04/2022 16:53:41 - WARNING - datasets.arrow_dataset - Loading cached processed dataset at /home/ace14385kw/.cache/huggingface/datasets/json/default-27bae8f72b8d9ea7/0.0.0/a3e658c4731e59120d44081ac10bf85dc7e1388126b92338344ce9661907f253/cache-91513928be71e210.arrow
+{'loss': 3.5048, 'learning_rate': 4.5e-06, 'epoch': 1.0}
