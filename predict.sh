@@ -1,12 +1,12 @@
-NAME=bart-large-qmsum/checkpoint-
+NAME=bart-large-qmsum/checkpoint-1257
 SPLIT=test
-OUTPUT_DIR=output/${NAME}
+
 python -u train.py \
-  --test_file data/eli5/${SPLIT}.jsonl \
+  --test_file data/qmsum/${SPLIT}.json \
   --do_predict \
-  --model_name_or_path $OUTPUT_DIR \
-  --output_dir ${OUTPUT_DIR}/predition_logs_${SPLIT} \
-  --prediction_path ${OUTPUT_DIR}/predictions.${SPLIT} \
+  --model_name_or_path output/${NAME} \
+  --output_dir output/${NAME}/prediction_logs_${SPLIT} \
+  --prediction_path output/${NAME}/predictions.${SPLIT} \
   --max_source_length 512 \
   --generation_max_len 256 \
   --val_max_target_length 256 \
