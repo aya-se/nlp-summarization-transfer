@@ -8,4 +8,7 @@ python -u train.py \
   --output_dir output/${NAME}/prediction_logs_${SPLIT} \
   --overwrite_output_dir \
   --per_device_eval_batch_size 1 \
+  --max_source_length 1024 \
+  --generation_max_len 256 \
+  --val_max_target_length 256 \
   --predict_with_generate
