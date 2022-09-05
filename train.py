@@ -28,7 +28,7 @@ from typing import Optional
 import datasets
 import nltk  # Here to have a nice missing dependency error message early on
 import numpy as np
-from datasets import load_dataset
+from datasets import load_dataset, load_metric
 
 import evaluate
 import transformers
@@ -518,7 +518,8 @@ def main():
 
     # QMSum用に書き換え
     def preprocess_function(examples):
-        inputs = [f"<s>{query}</s>{source}</s>" for query, source in zip(examples["query"], examples["source"])]
+        # inputs = [f"<s>{query}</s>{source}</s>" for query, source in zip(examples["query"], examples["source"])]
+        inputs = [f"question: {query} context: <s>{source}</s>" for query, source in zip(examples["query"], examples["source"])]
         model_inputs = tokenizer(
             inputs,
             max_length=tokenizer.model_max_length,
@@ -597,7 +598,7 @@ def main():
     )
 
     # Metric
-    metric = evaluate.load("rouge")
+    metric = load_metric("rouge")
 
     def postprocess_text(preds, labels):
         preds = [pred.strip() for pred in preds]

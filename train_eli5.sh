@@ -1,4 +1,4 @@
-NAME=bart-large-qmsum
+NAME=bart-large-eli5-to-qmsum
 
 python -u train.py \
 --train_file data/qmsum/train.json \
@@ -7,7 +7,7 @@ python -u train.py \
 --do_eval \
 --learning_rate 0.000005 \
 --gradient_checkpointing \
---model_name_or_path facebook/bart-large \
+--model_name_or_path yjernite/bart_eli5  \
 --metric_for_best_model eval_mean_rouge \
 --output_dir output/${NAME} \
 --per_device_train_batch_size 1 \
